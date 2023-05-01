@@ -1,5 +1,6 @@
 package com.epam.wdframework;
 
+import com.epam.wdframework.driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -10,12 +11,11 @@ public abstract class WebDriverTest {
 
 	@BeforeMethod
 	protected void setUp() {
-		webDriver = new ChromeDriver();
+		webDriver = DriverSingleton.getDriver();
 	}
 
 	@AfterMethod
 	protected void tearDown() {
-		webDriver.quit();
-		webDriver = null;
+		DriverSingleton.closeDriver();
 	}
 }
