@@ -2,16 +2,8 @@ package com.epam.wdframework;
 
 import static org.testng.Assert.assertEquals;
 
-import com.epam.wdframework.google.cloud.calculator.select.option.CommitedUsage;
-import com.epam.wdframework.google.cloud.calculator.select.option.GraphicsCount;
-import com.epam.wdframework.google.cloud.calculator.select.option.GraphicsType;
-import com.epam.wdframework.google.cloud.calculator.select.option.LocalSSD;
-import com.epam.wdframework.google.cloud.calculator.select.option.MachineType;
-import com.epam.wdframework.google.cloud.calculator.select.option.OperatingSystem;
-import com.epam.wdframework.google.cloud.calculator.select.option.ProvisioningModel;
-import com.epam.wdframework.google.cloud.calculator.select.option.Region;
-import com.epam.wdframework.google.cloud.calculator.select.option.Series;
 import com.epam.wdframework.google.cloud.home.GoogleCloudPage;
+import com.epam.wdframework.model.InstancesModelFactory;
 import com.epam.wdframework.yopmail.YopmailHomePage;
 import java.time.Duration;
 import java.util.regex.MatchResult;
@@ -37,17 +29,8 @@ public class PricingCalculatorTest extends WebDriverTest {
 			.search(searchQuery)
 			.tapGoogleCloudPlatformPricingCalculatorLink();
 
-		calculatorPage
-			.switchToComputeEngineConfigurator()
-			.inputNumberOfInstances(4)
-			.selectOperatingSystem(OperatingSystem.FREE)
-			.selectProvisioningModel(ProvisioningModel.REGULAR)
-			.selectSeries(Series.N1)
-			.selectMachineType(MachineType.N1_STANDARD_8)
-			.addGraphics(GraphicsType.NVIDIA_TESLA_V100, GraphicsCount.COUNT_1)
-			.selectLocalSSD(LocalSSD.GB_2_X_375)
-			.selectDatacenterLocation(Region.FRANKFURT)
-			.selectCommitedUsage(CommitedUsage.ONE_YEAR)
+		calculatorPage.switchToComputeEngineConfigurator()
+			.addInstancesConfiguration(InstancesModelFactory.buildDefaultInstancesModel())
 			.addToEstimate();
 
 		var totalCost = calculatorPage.toEstimations().getTotalCost();

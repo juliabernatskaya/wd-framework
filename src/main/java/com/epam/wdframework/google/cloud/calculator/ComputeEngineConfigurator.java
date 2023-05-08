@@ -10,6 +10,7 @@ import com.epam.wdframework.google.cloud.calculator.select.option.OperatingSyste
 import com.epam.wdframework.google.cloud.calculator.select.option.ProvisioningModel;
 import com.epam.wdframework.google.cloud.calculator.select.option.Region;
 import com.epam.wdframework.google.cloud.calculator.select.option.Series;
+import com.epam.wdframework.model.InstancesModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,6 +48,19 @@ public class ComputeEngineConfigurator extends GoogleCloudCalculatorFrame implem
 
 	protected ComputeEngineConfigurator(WebDriver webDriver) {
 		super(webDriver);
+	}
+
+	public ComputeEngineConfigurator addInstancesConfiguration(InstancesModel instancesModel) {
+		inputNumberOfInstances(instancesModel.getNumberOfInstances());
+		selectOperatingSystem(instancesModel.getOperatingSystem());
+		selectProvisioningModel(instancesModel.getProvisioningModel());
+		selectSeries(instancesModel.getSeries());
+		selectMachineType(instancesModel.getMachineType());
+		addGraphics(instancesModel.getGraphicsType(), instancesModel.getGraphicsCount());
+		selectLocalSSD(instancesModel.getLocalSSD());
+		selectDatacenterLocation(instancesModel.getRegion());
+		selectCommitedUsage(instancesModel.getCommitedUsage());
+		return this;
 	}
 
 	public ComputeEngineConfigurator inputNumberOfInstances(int instances) {
