@@ -31,7 +31,6 @@ public class PricingCalculatorTest extends WebDriverTest {
 		var searchQuery = "Google Cloud Platform Pricing Calculator";
 
 		webDriver.get(GOOGLE_CLOUD_URL);
-		webDriver.manage().window().maximize();
 		var googleTab = webDriver.getWindowHandle();
 
 		var calculatorPage = new GoogleCloudPage(webDriver)
