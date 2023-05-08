@@ -4,11 +4,10 @@ import static org.testng.Assert.assertEquals;
 
 import com.epam.wdframework.google.cloud.home.GoogleCloudPage;
 import com.epam.wdframework.model.InstancesModelFactory;
+import com.epam.wdframework.util.Shortcut;
+import com.epam.wdframework.util.TextExtractor;
 import com.epam.wdframework.yopmail.YopmailHomePage;
 import java.time.Duration;
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.Test;
 
@@ -16,7 +15,6 @@ public class PricingCalculatorTest extends WebDriverTest {
 
 	private static final String GOOGLE_CLOUD_URL = "https://cloud.google.com";
 	private static final String YOPMAIL_URL = "https://yopmail.com";
-	private static final String TOTAL_COST_EMAIL_REGEX = "(?<=Total Estimated Monthly Cost\\s)(.*?)(?=\\n)";
 
 	@Test
 	public void run() {
@@ -48,7 +46,7 @@ public class PricingCalculatorTest extends WebDriverTest {
 		webDriver.switchTo().window(googleTab);
 
 		emailEstimateForm
-			.enterEmailAddress(Keys.chord(Keys.COMMAND, "v"))
+			.enterEmailAddress(Shortcut.paste())
 			.sendEmail();
 
 		webDriver.switchTo().window(yopmailTab);
@@ -57,14 +55,6 @@ public class PricingCalculatorTest extends WebDriverTest {
 			.waitForNewEmail(Duration.ofSeconds(1000))
 			.getEmailText();
 
-		assertEquals(totalCost, extractTotalCostFromEmail(emailBody));
-	}
-
-	private String extractTotalCostFromEmail(String emailBody) {
-		return Pattern.compile(TOTAL_COST_EMAIL_REGEX).matcher(emailBody)
-			.results()
-			.map(MatchResult::group)
-			.findFirst()
-			.orElse(emailBody);
+		assertEquals(totalCost, TextExtractor.extractTotalCostFromEmail(emailBody));
 	}
 }
