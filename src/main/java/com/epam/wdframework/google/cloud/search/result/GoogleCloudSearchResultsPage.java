@@ -21,6 +21,12 @@ public class GoogleCloudSearchResultsPage extends PageObject {
 		super(webDriver);
 	}
 
+	public boolean containsLinkWithText(String linkText) {
+		return wait.until(ExpectedConditions.visibilityOfAllElements(searchResults))
+			.stream()
+			.anyMatch(element -> linkText.equalsIgnoreCase(element.getText()));
+	}
+
 	public GoogleCloudCalculatorPage tapGoogleCloudPlatformPricingCalculatorLink() {
 		wait.until(ExpectedConditions.visibilityOfAllElements(searchResults))
 			.stream()
