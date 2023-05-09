@@ -22,4 +22,10 @@ public class GoogleCloudTest extends WebDriverTest {
 		var searchQuery = "Google Cloud Platform Pricing Calculator";
 		assertTrue(new GoogleCloudPage(webDriver).search(searchQuery).containsLinkWithText(searchQuery));
 	}
+
+	@Test
+	void thisTestShouldFail() {
+		webDriver.get(GOOGLE_CLOUD_URL);
+		assertEquals("foo", webDriver.getTitle());
+	}
 }
