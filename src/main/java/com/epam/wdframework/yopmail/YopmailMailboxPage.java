@@ -39,11 +39,11 @@ public class YopmailMailboxPage extends PageObject {
 		return emailText;
 	}
 
-	public YopmailMailboxPage waitForNewEmail(Duration duration) {
+	public YopmailMailboxPage waitForNewEmail(Duration polling, Duration timeout) {
 		var initialEmailCount = getEmailCount();
 		wait
-			.withTimeout(duration)
-			.pollingEvery(Duration.ofSeconds(5))
+			.withTimeout(timeout)
+			.pollingEvery(polling)
 			.until(webDriver -> {
 				clickElement(refreshButton);
 				return getEmailCount() > initialEmailCount;

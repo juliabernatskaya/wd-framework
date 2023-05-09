@@ -4,10 +4,10 @@ import static org.testng.Assert.assertEquals;
 
 import com.epam.wdframework.google.cloud.home.GoogleCloudPage;
 import com.epam.wdframework.model.InstancesModelFactory;
+import com.epam.wdframework.service.TestDataReader;
 import com.epam.wdframework.util.Shortcut;
 import com.epam.wdframework.util.TextExtractor;
 import com.epam.wdframework.yopmail.YopmailHomePage;
-import java.time.Duration;
 import org.openqa.selenium.WindowType;
 import org.testng.annotations.Test;
 
@@ -21,6 +21,7 @@ public class PricingCalculatorTest extends WebDriverTest {
 		var searchQuery = "Google Cloud Platform Pricing Calculator";
 
 		webDriver.get(GOOGLE_CLOUD_URL);
+
 		var googleTab = webDriver.getWindowHandle();
 
 		var calculatorPage = new GoogleCloudPage(webDriver)
@@ -52,7 +53,7 @@ public class PricingCalculatorTest extends WebDriverTest {
 		webDriver.switchTo().window(yopmailTab);
 
 		var emailBody = yopmail
-			.waitForNewEmail(Duration.ofSeconds(1000))
+			.waitForNewEmail(TestDataReader.getEmailRefreshInterval(), TestDataReader.getEmailRefreshTimeout())
 			.getEmailText();
 
 		assertEquals(totalCost, TextExtractor.extractTotalCostFromEmail(emailBody));
