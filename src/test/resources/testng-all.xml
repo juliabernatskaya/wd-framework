@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="All">
+	<test name="AllTest" >
+		<classes>
+			<class name="com.epam.wdframework.GoogleCloudTest" />
+			<class name="com.epam.wdframework.PricingCalculatorTest" />
+		</classes>
+	</test>
+</suite>
