@@ -1,4 +1,4 @@
-package com.epam.wdframework.yopmail;
+package com.epam.wdframework.page.yopmail;
 
 import com.epam.wdframework.common.PageObject;
 import org.openqa.selenium.WebDriver;

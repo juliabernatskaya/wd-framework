@@ -17,7 +17,7 @@ public abstract class WebDriverTest {
 		webDriver = DriverSingleton.getDriver();
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	protected void tearDown() {
 		DriverSingleton.closeDriver();
 	}
