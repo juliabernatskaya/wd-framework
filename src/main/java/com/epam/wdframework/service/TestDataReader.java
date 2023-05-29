@@ -8,12 +8,11 @@ public class TestDataReader {
 
 	private static final String EMAIL_REFRESH_INTERVAL = "email.refresh.interval";
 	private static final String EMAIL_REFRESH_TIMEOUT = "email.refresh.timeout";
+	private static final ResourceBundle resourceBundle = ResourceBundle
+			.getBundle(Optional.ofNullable(System.getProperty("env")).orElse("dev"));
 
 	private TestDataReader() {
 	}
-
-	private static final ResourceBundle resourceBundle = ResourceBundle
-			.getBundle(Optional.ofNullable(System.getProperty("env")).orElse("dev"));
 
 	public static Duration getEmailRefreshInterval() {
 		return Duration.ofSeconds((Integer.parseInt(getProperty(EMAIL_REFRESH_INTERVAL))));
@@ -21,7 +20,6 @@ public class TestDataReader {
 
 	public static Duration getEmailRefreshTimeout() {
 		return Duration.ofSeconds((Integer.parseInt(getProperty(EMAIL_REFRESH_TIMEOUT))));
-
 	}
 
 	private static String getProperty(String key) {

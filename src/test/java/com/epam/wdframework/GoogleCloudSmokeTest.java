@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class GoogleCloudTest extends WebDriverTest {
+public class GoogleCloudSmokeTest extends WebDriverTest {
 
     private static final String GOOGLE_CLOUD_URL = "https://cloud.google.com";
 
