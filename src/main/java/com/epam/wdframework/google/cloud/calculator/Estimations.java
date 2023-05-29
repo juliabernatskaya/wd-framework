@@ -1,58 +1,53 @@
 package com.epam.wdframework.google.cloud.calculator;
 
 import com.epam.wdframework.common.Locatable;
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
 public class Estimations extends GoogleCloudCalculatorFrame implements Locatable {
 
-	private static final By LOCATOR = By.id("resultBlock");
-	private static final String TOTAL_COST_REGEX = "(?<=Total Estimated Cost:\\s)(.*?)(?=\\sper 1 month)";
-	@FindBy(xpath = "//div[@class='cpc-cart-total']/descendant::b")
-	private WebElement totalCostRow;
-	@FindBy(xpath = "//button[@title='Email Estimate']")
-	private WebElement emailEstimationButton;
+    private static final By LOCATOR = By.id("resultBlock");
+    private static final String TOTAL_COST_REGEX = "(?<=Total Estimated Cost:\\s)(.*?)(?=\\sper 1 month)";
+    @FindBy(xpath = "//div[@class='cpc-cart-total']/descendant::b")
+    private WebElement totalCostRow;
+    @FindBy(xpath = "//button[@title='Email Estimate']")
+    private WebElement emailEstimationButton;
 
-	private final ComputeEngineEstimation computeEngineEstimation;
+    private final ComputeEngineEstimation computeEngineEstimation;
 
-	protected Estimations(WebDriver webDriver) {
-		super(webDriver);
-		computeEngineEstimation = new ComputeEngineEstimation(webDriver);
-	}
+    protected Estimations(WebDriver webDriver) {
+        super(webDriver);
+        computeEngineEstimation = new ComputeEngineEstimation(webDriver);
+    }
 
-	public ComputeEngineEstimation toComputeEngineEstimation() {
-		waitForElement(computeEngineEstimation.getLocator());
-		return computeEngineEstimation;
-	}
+    public ComputeEngineEstimation toComputeEngineEstimation() {
+        waitForElement(computeEngineEstimation.getLocator());
+        return computeEngineEstimation;
+    }
 
-	public String getTotalCost() {
-		var totalCostRowValue = getElementText(totalCostRow);
-		return Pattern.compile(TOTAL_COST_REGEX).matcher(totalCostRowValue)
-			.results()
-			.map(MatchResult::group)
-			.findFirst()
-			.orElse(totalCostRowValue);
-	}
+    public String getTotalCost() {
+        var totalCostRowValue = getElementText(totalCostRow);
+        return Pattern.compile(TOTAL_COST_REGEX).matcher(totalCostRowValue)
+                .results()
+                .map(MatchResult::group)
+                .findFirst()
+                .orElse(totalCostRowValue);
+    }
 
-	public EmailEstimationForm emailEstimation() {
-		clickElement(emailEstimationButton);
-		var emailEstimateForm = new EmailEstimationForm(webDriver);
-		waitForElement(emailEstimateForm.getLocator());
-		return emailEstimateForm;
-	}
+    public EmailEstimationForm emailEstimation() {
+        clickElement(emailEstimationButton);
+        var emailEstimateForm = new EmailEstimationForm(webDriver);
+        waitForElement(emailEstimateForm.getLocator());
+        return emailEstimateForm;
+    }
 
-	@Override
-	public By getLocator() {
-		return LOCATOR;
-	}
-
-	@Override
-	protected void init(WebDriver webDriver) {
-		PageFactory.initElements(webDriver, this);
-	}
+    @Override
+    public By getLocator() {
+        return LOCATOR;
+    }
 }
