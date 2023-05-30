@@ -1,6 +1,6 @@
 package com.epam.wdframework.page.google.cloud.calculator;
 
-import com.epam.wdframework.common.Locatable;
+import com.epam.wdframework.page.Locatable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

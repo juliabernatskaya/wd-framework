@@ -1,6 +1,6 @@
 package com.epam.wdframework.page.google.cloud.home;
 
-import com.epam.wdframework.common.PageObject;
+import com.epam.wdframework.page.PageObject;
 import com.epam.wdframework.page.google.cloud.search.result.GoogleCloudSearchResultsPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;

@@ -1,6 +1,6 @@
 package com.epam.wdframework.page.google.cloud.calculator;
 
-import com.epam.wdframework.common.Locatable;
+import com.epam.wdframework.page.Locatable;
 import com.epam.wdframework.model.InstancesModel;
 import com.epam.wdframework.page.google.cloud.calculator.select.option.*;
 import org.openqa.selenium.By;

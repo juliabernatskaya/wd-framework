@@ -1,6 +1,6 @@
 package com.epam.wdframework.page.google.cloud.search.result;
 
-import com.epam.wdframework.common.PageObject;
+import com.epam.wdframework.page.PageObject;
 import com.epam.wdframework.page.google.cloud.calculator.GoogleCloudCalculatorPage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
