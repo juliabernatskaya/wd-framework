@@ -3,7 +3,7 @@
 <suite name="Smoke">
 	<test name="SmokeTest" >
 		<classes>
-			<class name="com.epam.wdframework.GoogleCloudTest" />
+			<class name="com.epam.wdframework.GoogleCloudSmokeTest" />
 		</classes>
 	</test>
 </suite>
